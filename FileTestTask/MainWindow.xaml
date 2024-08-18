@@ -1,0 +1,60 @@
+﻿<Window x:Class="FileTestTask.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FileTestTask"
+        mc:Ignorable="d"
+        Title="Menu" Height="450" Width="1020"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="SingleBorderWindow"
+        AllowsTransparency="False"
+        ResizeMode="NoResize">
+    <!--// Base Grid //-->
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="220"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid HorizontalAlignment="Left"
+         Width="228">
+            <Border Background="#272B2F"
+                 />
+
+            <StackPanel Height="400" Width="228">
+                <RadioButton Style="{StaticResource Radio_BtnStyle}"
+                             x:Name="TaskOne" Click="TaskOne_Click"
+                             Content="Task One"
+                                
+                     Height="100">
+                    <RadioButton.ContentTemplate>
+                        <DataTemplate>
+                            <TextBlock Style="{StaticResource Text_Style}" Text="{Binding}"></TextBlock>
+                        </DataTemplate>
+                    </RadioButton.ContentTemplate>
+                </RadioButton>
+                <RadioButton Style="{StaticResource Radio_BtnStyle}" 
+                             x:Name="TaskTwo" Click="TaskTwo_Click"
+                             Content="Task Two"
+                     Height="100">
+                    <RadioButton.ContentTemplate>
+                        <DataTemplate>
+                            <TextBlock Style="{StaticResource Text_Style}" Text="{Binding}"></TextBlock>
+                        </DataTemplate>
+                    </RadioButton.ContentTemplate>
+                </RadioButton>
+
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Column="1">
+            <Border Background="#272B2F"
+     />
+            <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"></Frame>
+        </Grid>
+    </Grid>
+
+
+
+</Window>
