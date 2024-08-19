@@ -1,4 +1,7 @@
-﻿using FileTestTask.Views;
+﻿using FileTestTask.Models;
+using FileTestTask.Services.Repository;
+using FileTestTask.Views;
+using Microsoft.Extensions.DependencyInjection;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -25,19 +28,25 @@ namespace FileTestTask
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+
+        private readonly RecordRepository _recordRepository;
+
+        public MainWindow(IRepository<Record> repository)
         {
+            _recordRepository = (RecordRepository)repository;
             InitializeComponent();
         }
 
         private void TaskOne_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Navigate(new TaskOne());
+            MainFrame.Navigate(new TaskOne(_recordRepository));
         }
 
         private void TaskTwo_Click(object sender, RoutedEventArgs e)
         {
             MainFrame.Navigate(new TaskTwo());
         }
+
+        
     }
 }

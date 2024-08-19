@@ -6,9 +6,15 @@
       xmlns:local="clr-namespace:FileTestTask.Views"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="TaskOne"
-      Style="{StaticResource Page_Style}">
+      Title="TaskOne">
 
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="./../Styles/Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="150"></RowDefinition>
@@ -87,7 +93,7 @@
             <Button Style="{StaticResource BtnStyle}"
              Margin="0,0,60,30" HorizontalAlignment="Center"
              Content="Import File"
-             Visibility="Hidden"
+             
              x:Name="ImportButton"
              Click="ImportButton_Click">
                 <Button.ContentTemplate>
@@ -98,12 +104,19 @@
             </Button>
         </Grid>
         <Grid Grid.Row="2" Grid.Column="1">
-            <ProgressBar x:Name="ImportPorgress"
-                         Visibility="Hidden"
+            <ProgressBar x:Name="ImportProgress"
+                        
                          VerticalAlignment="Center"
                          Height="30"
                          Margin="0,0,40,30"></ProgressBar>
-            
+
+
+            <TextBlock Style="{StaticResource Text_Style}"
+                       x:Name="ImportProgressText"
+                       HorizontalAlignment="Center"
+                       FontSize="20"
+                      
+                       Margin="0,0,0,80"></TextBlock>
         </Grid>
         
     </Grid>

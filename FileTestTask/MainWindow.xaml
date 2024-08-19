@@ -10,8 +10,14 @@
         WindowStyle="SingleBorderWindow"
         AllowsTransparency="False"
         ResizeMode="NoResize">
-    <!--// Base Grid //-->
-
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles/Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <!--// Base Grid //-->    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="220"/>

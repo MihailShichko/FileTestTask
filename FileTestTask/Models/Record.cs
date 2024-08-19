@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,15 +9,18 @@ namespace FileTestTask.Models
 {
     public class Record
     {
-        public DateTime Date { get; }
+        [Key]
+        public int Id { get; set; }
 
-        public string LatinString { get; }
+        public DateTime Date { get; set; }
 
-        public string CyrillicString { get; }
+        public string LatinString { get; set; }
 
-        public int OddNum { get; }
+        public string CyrillicString { get; set; }
 
-        public double FractionalNum { get; }
+        public int OddNum { get; set; }
+
+        public double FractionalNum { get; set; }
 
         public Record(DateTime date, string latinString, string cyrillicString, int oddNum, double fractionalNum)
         {
@@ -30,7 +34,7 @@ namespace FileTestTask.Models
         public override string ToString()
         {
             return string.Join("||",
-                Date.ToString("0:dd.mm.yy"),
+                Date.ToString("dd.mm.yyyy"),
                 LatinString,
                 CyrillicString,
                 OddNum,
