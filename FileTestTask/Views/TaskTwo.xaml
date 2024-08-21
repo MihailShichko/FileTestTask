@@ -3,20 +3,136 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:FileTestTask.Views"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="TaskTwo"
-      Style="{StaticResource Page_Style}"
       >
 
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="./../Styles/Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
     <Grid>
-        <Label Content="AYE">
-            <Label.ContentTemplate>
-                <DataTemplate>
-                    <TextBlock Style="{StaticResource Text_Style}" Text="{Binding}"></TextBlock>
-                </DataTemplate>
-            </Label.ContentTemplate>
-        </Label>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="200"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Grid.Column="0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"></RowDefinition>
+                    <RowDefinition Height="100"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="400"></ColumnDefinition>
+                    <ColumnDefinition Width="400"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Row="0" Grid.Column="0">
+                    <Button Style="{StaticResource BtnStyle}"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Margin="0,0,0,0"
+                    x:Name="ImportButton"
+                    Click="ImportButton_Click">
+                        <Button.ContentTemplate>
+                            <DataTemplate>
+                                <TextBlock Style="{StaticResource Text_Style}" Text="{Binding}"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Margin="0,0,0,0">
+                                Import Excel File
+                                </TextBlock>
+                            </DataTemplate>
+                        </Button.ContentTemplate>
+                    </Button>
+                </Grid>
+
+                <Grid Grid.Row="0" Grid.Column="1">
+                    <TextBlock Style="{StaticResource Text_Style}"
+                   FontSize="30"
+                   x:Name="ImportTextBlock"
+                   Visibility="Hidden"></TextBlock>
+                </Grid>
+                <Grid Grid.Row="1" Grid.Column="0">
+                    <Button Style="{StaticResource BtnStyle}"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Margin="0,0,0,0"
+                    x:Name="ShowFilesButton"
+                    Click="ShowFilesButton_Click">
+                        <Button.ContentTemplate>
+                            <DataTemplate>
+                                <TextBlock Style="{StaticResource Text_Style}" Text="{Binding}"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Margin="0,0,0,0">    
+                                Show imported files
+                                </TextBlock>
+                            </DataTemplate>
+                        </Button.ContentTemplate>
+                    </Button>
+                </Grid>
+                <Grid Grid.Row="1" Grid.Column="1">
+                    <ListView Visibility="Hidden"
+                        x:Name="FileList">
+                    </ListView>
+
+                </Grid>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="0">
+            <ComboBox x:Name="ClassBox"
+            Width="500"
+            Margin="0,0,0,180"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            SelectionChanged="ClassBox_Selected"
+            Loaded="ClassBox_Loaded">
+            </ComboBox>
+
+
+            <Grid Grid.Row="2" Grid.Column="2">
+                <ListView Visibility="Visible"
+                    x:Name="AccountList"
+                    Margin="0,50,0,0">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=Number}">
+                                Б/сч
+                            </GridViewColumn>
+
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=OpeningBalanceActive}">
+                                Входящее Сальдо актив
+                            </GridViewColumn>
+
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=OpeningBalancePassive}">
+                                Входящее Сальдо пассив
+                            </GridViewColumn>
+
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=DebitTurnover}">
+                                Обороты дебет
+                            </GridViewColumn>
+
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=CreditTurnover}">
+                                Обороты кредит
+                            </GridViewColumn>
+
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=ClosingBalanceActive}">
+                                Исходящее Сальдо актив
+                            </GridViewColumn>
+
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=ClosingBalancePassive}">
+                                Исходящее Сальдо пассив
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+        </Grid>
     </Grid>
 </Page>

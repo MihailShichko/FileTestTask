@@ -4,6 +4,7 @@ using FileTestTask.DataBase;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FileTestTask.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240819211844_ExelTables")]
+    partial class ExelTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -69,36 +72,21 @@ namespace FileTestTask.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<long>("ClassEndRow")
+                        .HasColumnType("bigint");
+
                     b.Property<int>("ClassIndex")
                         .HasColumnType("int");
 
                     b.Property<string>("ClassName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("OriginFileId")
-                        .HasColumnType("int");
+                    b.Property<long>("ClassStartRow")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("OriginFileId");
 
                     b.ToTable("AccountClasses");
-                });
-
-            modelBuilder.Entity("FileTestTask.Models.OriginFile", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("OriginFiles");
                 });
 
             modelBuilder.Entity("FileTestTask.Models.Record", b =>
@@ -140,17 +128,6 @@ namespace FileTestTask.Migrations
                         .IsRequired();
 
                     b.Navigation("Class");
-                });
-
-            modelBuilder.Entity("FileTestTask.Models.AccountClass", b =>
-                {
-                    b.HasOne("FileTestTask.Models.OriginFile", "OriginFile")
-                        .WithMany()
-                        .HasForeignKey("OriginFileId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("OriginFile");
                 });
 #pragma warning restore 612, 618
         }

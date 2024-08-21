@@ -12,15 +12,13 @@ namespace FileTestTask.DataBase
     public class ApplicationDbContext : DbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> dbContextOptions) : base(dbContextOptions) { }
-        //public ApplicationDbContext()
-        //{
 
-        //}
-
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    optionsBuilder.UseSqlServer("Data Source=DESKTOP-ARBQ8S0;Database=FileTestTask;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
-        //}
         public DbSet<Record> Records { get; set; }
+
+        public DbSet<Account> Accounts { get; set; }
+
+        public DbSet<AccountClass> AccountClasses { get; set; }
+
+        public DbSet<OriginFile> OriginFiles { get; set; }
     }
 }

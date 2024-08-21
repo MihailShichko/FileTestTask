@@ -1,5 +1,6 @@
 ﻿using FileTestTask.DataBase;
 using FileTestTask.Models;
+using FileTestTask.Services.Exel;
 using FileTestTask.Services.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -27,7 +28,11 @@ namespace FileTestTask
             {
                 services.AddSingleton<App>();
                 services.AddSingleton<MainWindow>();
+                services.AddTransient<ExcelService>();
                 services.AddScoped<IRepository<Record>, RecordRepository>();
+                services.AddScoped<IRepository<Account>, AccountRepository>();
+                services.AddScoped<IRepository<AccountClass>, AccountClassRepository>();
+                services.AddScoped<IRepository<OriginFile>,  OriginFileRepository>();
                 services.AddDbContext<ApplicationDbContext>(options =>
                 {
                     options.UseSqlServer("Data Source=DESKTOP-ARBQ8S0;Database=FileTestTask;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
