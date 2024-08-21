@@ -14,8 +14,7 @@ namespace FileTestTask
 {
     public partial class App : Application
     {
-        //private IServiceProvider _serviceProvider;
-        //private IConfiguration _configuration;
+
         readonly MainWindow mainWindow;
 
         public App(MainWindow mainWindow)
@@ -23,7 +22,6 @@ namespace FileTestTask
             this.mainWindow = mainWindow;
         }
 
-        //public IServiceProvider ServiceProvider => _serviceProvider;
 
         protected override void OnStartup(StartupEventArgs e)
         {

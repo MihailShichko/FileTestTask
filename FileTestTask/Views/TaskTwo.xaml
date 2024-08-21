@@ -97,7 +97,7 @@
 
 
             <Grid Grid.Row="2" Grid.Column="2">
-                <ListView Visibility="Visible"
+                <ListView Visibility="Hidden"
                     x:Name="AccountList"
                     Margin="0,50,0,0">
                     <ListView.View>

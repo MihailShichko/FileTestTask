@@ -35,7 +35,7 @@ namespace FileTestTask
                 services.AddScoped<IRepository<OriginFile>,  OriginFileRepository>();
                 services.AddDbContext<ApplicationDbContext>(options =>
                 {
-                    options.UseSqlServer("Data Source=DESKTOP-ARBQ8S0;Database=FileTestTask;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
+                    options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
                 });
             })
             .Build();

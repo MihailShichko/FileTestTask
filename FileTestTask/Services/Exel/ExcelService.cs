@@ -28,8 +28,8 @@ namespace FileTestTask.Services.Exel
             var stream = new FileInfo(path);
             using var excelPackage = new ExcelPackage(stream);
 
-            var filename = Path.GetFileName(path);  
-            
+            var filename = Path.GetFileName(path);
+
             var accounts = new List<Account>();
             var classes = new List<AccountClass>();
 
@@ -56,12 +56,16 @@ namespace FileTestTask.Services.Exel
 
                     var className = getClassName(value);
                     var classIndex = getClassIndex(value);
-                    classes.Add(new AccountClass
+
+                    var Class = new AccountClass
                     {
                         ClassIndex = classIndex,
                         ClassName = className,
                         OriginFile = OriginFile
-                    });
+                    };
+
+                    classes.Add(Class);
+
                     for (int j = i + 1; j < rows; j++) //Accounts
                     {
                         var cell = worksheet.Cells[j, startColumn, j, startColumn];
@@ -85,18 +89,11 @@ namespace FileTestTask.Services.Exel
                             CreditTurnover = double.Parse(worksheet.Cells[j, startColumn + 4, j, startColumn + 4].Value.ToString()),
                             ClosingBalanceActive = double.Parse(worksheet.Cells[j, startColumn + 5, j, startColumn + 5].Value.ToString()),
                             ClosingBalancePassive = double.Parse(worksheet.Cells[j, startColumn + 6, j, startColumn + 6].Value.ToString()),
-                            Class = new AccountClass
-                            {
-                                ClassIndex = classIndex,
-                                ClassName = className,
-                                OriginFile = OriginFile
-                            }
+                            Class = Class
                         };
 
                         accounts.Add(account);
                     }
-
-
 
                 }
             }

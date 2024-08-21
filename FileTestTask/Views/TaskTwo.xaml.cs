@@ -57,6 +57,7 @@ namespace FileTestTask.Views
             ImportTextBlock.Visibility = Visibility.Visible;
             ImportTextBlock.Text = "Process...";
             await _excelService.Import(filePath);
+            ClassBox.ItemsSource = (await _accountClassRepository.GetAll()).Select(ac => ac.ClassName).ToList();
             ImportTextBlock.Text = "Done";
         }
 
